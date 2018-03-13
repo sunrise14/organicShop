@@ -26,6 +26,7 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { FormsModule } from '@angular/forms';
 import {CustomFormsModule} from 'ng2-validation';
+import { DataTableModule } from 'angular5-data-table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import {CustomFormsModule} from 'ng2-validation';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -59,9 +61,10 @@ import {CustomFormsModule} from 'ng2-validation';
       {path:'order-success', component:OrderSuccessComponent, canActivate:[AuthGuardService]},
       {path:'my/orders', component:MyOrdersComponent, canActivate:[AuthGuardService]},
       
+      {path: 'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuardService, AdminAuthGuardService]},
+      {path: 'admin/products/:id', component:ProductFormComponent, canActivate:[AuthGuardService, AdminAuthGuardService]},
       {path: 'admin/products', component:AdminProductsComponent, canActivate:[AuthGuardService, AdminAuthGuardService]},
-      {path:'admin/orders', component:AdminOrdersComponent, canActivate:[AuthGuardService, AdminAuthGuardService]},
-      {path: 'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuardService, AdminAuthGuardService]}
+      {path:'admin/orders', component:AdminOrdersComponent, canActivate:[AuthGuardService, AdminAuthGuardService]}
     ])
   ],
   providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService, CategoryService, ProductService],
