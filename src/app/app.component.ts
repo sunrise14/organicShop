@@ -11,11 +11,13 @@ import { UserService } from './user.service';
 export class AppComponent {
   constructor(private userService:UserService, private auth:AuthService, router:Router){
     auth.user$.subscribe(user => {
-      if(user){
+      if(!user) return;
         userService.save(user); //everytime user logs in he will be stored in db which is not very effective, it actually happens only at registration time.
         let returnUrl = localStorage.getItem('returnUrl');
+        if(!returnUrl) return;
+        localStorage.removeItem('returnUrl');
         router.navigateByUrl(returnUrl);
-      }
+      
     })
   }
 }
