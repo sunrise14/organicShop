@@ -29,6 +29,7 @@ import {CustomFormsModule} from 'ng2-validation';
 import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +72,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
       {path:'admin/orders', component:AdminOrdersComponent, canActivate:[AuthGuardService, AdminAuthGuardService]}
     ])
   ],
-  providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService, CategoryService, ProductService],
+  providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService, CategoryService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
